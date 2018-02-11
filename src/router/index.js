@@ -32,7 +32,7 @@ export default new Router({
       path: '/catalog',
       name: 'catalog',
       component (resolve) {
-        require(['../components/catalog.vue'], resolve)
+        require(['../components/catalog/catalog.vue'], resolve)
       },
       meta: {
         title: '组件！'

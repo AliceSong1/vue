@@ -152,10 +152,17 @@
       },
       toAnchor (item) {
         let anchor = document.querySelector('#' + item) // 获取当前锚点对应的页面元素
-        let comtian = this.parentContainer ? window.document.querySelector(this.parentContainer) : ''
-        if (comtian) {
-          comtian.scrollTop = anchor.offsetTop
-          comtian.style.transition = '0.3s'
+        let scrollContainer = this.parentContainer ? window.document.querySelector(this.parentContainer) : ''
+        if (scrollContainer) {
+          // function scrollTop () {
+          //   if (comtian.scrollTop < anchor.offsetTop) {
+          //     comtian.scrollTop += 1
+          //   }
+          //   requestAnimationFrame(scrollTop)
+          // }
+          // requestAnimationFrame(scrollTop)
+          scrollContainer.scrollTop = anchor.offsetTop
+          scrollContainer.style.transition = '0.3s'
         } else {
           document.documentElement.scrollTop = anchor.offsetTop // document.documentElement谷歌金丝雀支持&火狐
           document.body.scrollTop = anchor.offsetTop

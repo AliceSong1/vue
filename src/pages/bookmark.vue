@@ -1,7 +1,8 @@
 <template>
   <div>
     <x-catalog
-    :catalogList="catalogList"
+    :parentSelector="parentSelector"
+    :titleSelectors="titleSelectors"
     ></x-catalog>
     <div class="cont-table">
       <div id="contain" style="padding: 0 15px; width: 800px;">
@@ -181,7 +182,7 @@
         <h3 class="doc-title" id="anchor9">9、数据报表</h3>
         <div class="doc-instr"><b>Q: 什么是数据报表？</b></div>
         <div class="doc-instr"><b>A: </b>新浪扶翼提供多维度的数据报表，用以分析投放情况，便于优化账户及创意。</div>
-        <div class="doc-title2" id="anchor91">8.1、 创意相关</div>
+        <div class="doc-title2" id="anchor91">9.1、 创意相关</div>
         <div class="doc-instr">下载快速学习扶翼广告创意操作相关知识。</div>
         <div class="doc-instr"><b>Q: 扶翼都有哪些创意尺寸可以选择？</b></div>
         <div class="doc-instr"><b>A: </b>如下图所示：</div>
@@ -191,7 +192,7 @@
   </div>
 </template>
 <script>
-  import XCatalog from '../components/catalog'
+  import XCatalog from '../components/catalog/catalog'
 
   export default {
     components: {
@@ -199,115 +200,121 @@
     },
     data () {
       return {
-        catalogList: [
-          {
-            name: '一级目录1',
-            value: 'anchor1',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor11'
-              }
-            ]
-          },
-          {
-            name: '一级目录2',
-            value: 'anchor2',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor21'
-              }
-            ]
-          },
-          {
-            name: '一级目录3',
-            value: 'anchor3',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor31'
-              }
-            ]
-          },
-          {
-            name: '一级目录4',
-            value: 'anchor4',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor41'
-              }
-            ]
-          },
-          {
-            name: '一级目录5',
-            value: 'anchor5',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor51'
-              },
-              {
-                name: '定向方案',
-                value: 'anchor52'
-              },
-              {
-                name: '效果评估',
-                value: 'anchor53'
-              },
-              {
-                name: '4、运营提示',
-                value: 'anchor54'
-              },
-              {
-                name: '5、效果工具',
-                value: 'anchor55'
-              }
-            ]
-          },
-          {
-            name: '一级目录6',
-            value: 'anchor6',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor61'
-              }
-            ]
-          },
-          {
-            name: '一级目录7',
-            value: 'anchor7',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor71'
-              }
-            ]
-          },
-          {
-            name: '一级目录8',
-            value: 'anchor8',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor81'
-              }
-            ]
-          },
-          {
-            name: '一级目录9',
-            value: 'anchor9',
-            children: [
-              {
-                name: '二级目录',
-                value: 'anchor91'
-              }
-            ]
-          }
-        ]
+        // catalogList: [
+        //   {
+        //     name: '一级目录1',
+        //     value: 'anchor1',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor11'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录2',
+        //     value: 'anchor2',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor21'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录3',
+        //     value: 'anchor3',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor31'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录4',
+        //     value: 'anchor4',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor41'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录5',
+        //     value: 'anchor5',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor51'
+        //       },
+        //       {
+        //         name: '定向方案',
+        //         value: 'anchor52'
+        //       },
+        //       {
+        //         name: '效果评估',
+        //         value: 'anchor53'
+        //       },
+        //       {
+        //         name: '4、运营提示',
+        //         value: 'anchor54'
+        //       },
+        //       {
+        //         name: '5、效果工具',
+        //         value: 'anchor55'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录6',
+        //     value: 'anchor6',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor61'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录7',
+        //     value: 'anchor7',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor71'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录8',
+        //     value: 'anchor8',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor81'
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     name: '一级目录9',
+        //     value: 'anchor9',
+        //     children: [
+        //       {
+        //         name: '二级目录',
+        //         value: 'anchor91'
+        //       }
+        //     ]
+        //   }
+        // ]
+        titleSelectors: ['doc-title', 'doc-title2'],
+        parentSelector: '.cont-table'
       }
+    },
+    methods: {
+    },
+    mounted () {
     }
   }
 </script>
